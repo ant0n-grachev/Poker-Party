@@ -67,7 +67,7 @@ public class GameEngine {
      */
     public GameEngine() {
         //0 (fullSpeed) to Integer.MAX_VALUE (~24 days)
-        gameSpeed = 350;
+        gameSpeed = 0;
 
         // Initialize the deck and shuffle it.
         deck = new Deck();
@@ -80,6 +80,7 @@ public class GameEngine {
         // Add NPC players to the game. These methods should be defined to add specific types of NPC players.
 
         //listPlayersRemainingGame.add(new ManualPlayer("manualPlayer"));
+        listPlayersRemainingGame.add(new Anton("Anton"));
         addConservativeNPCs(2);
         addSimpleNPCs(2);
         addRandomNPCs(1);
@@ -156,7 +157,7 @@ public class GameEngine {
         boolean phaseComplete = false;
         // Reset the current bet to 0 at the start of the betting phase.
         tableBet = 0;
-        Player bettor = null; 
+        Player bettor = null;
 
 
         // Check if there is only one player remaining in the round.
@@ -200,7 +201,7 @@ public class GameEngine {
             }
 
             if(activeBet) {
-                playersWithAction--; 
+                playersWithAction--;
             }
 
             // Iterate over a copy of the list of players still in the round to avoid concurrent modification issues.
@@ -325,7 +326,7 @@ public class GameEngine {
                 // Pause for a moment to simulate real-time gameplay and allow for readability of the game's progress.
                 sleep(gameSpeed);
 
-                
+
 
                 // If there are no players left with actions due to all players checking, calling, or being all-in, deactivate the active bet.
                 if(activeBetNumberOfPlayersLeft == 0) {
